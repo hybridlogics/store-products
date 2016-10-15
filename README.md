@@ -1,56 +1,59 @@
 "Store Products" is a very small and simple bakery/food shop management application
 
 
-INSTRUCTIONS: 
+## INSTRUCTIONS: ##
+
 Use WAMP/XAMPP server to run the application.
 
 
-PROJECT STRUCTURE:
+## PROJECT STRUCTURE: ##
 
-a/
--- css/
-    -- app.css
-    -- bootstrap.min.css
-    -- bootstrap-select.css
-    -- bootstrap-switch.min.css
-    -- bootstrap-theme.min.css
-    -- xeditable.css
-    -- angular-toggle-switch.css
--- fonts/
--- js/
-    -- app.js
-    -- controllers.js
-    -- filters.js
-    -- services.js
-    -- angular.min.js
-    -- resource.js
-    -- angular-bootstrap-switch.min.js
-    -- angular-route.min.js
-    -- angular-uploadcare.js
-    -- bootstrap.min.js
-    -- bootstrap-select.js
-    -- bootstrap-switch.min.js
-    -- bootstrap-transition.js
-    -- transition.js
-    -- tooltip.js
-    -- tab.js
-    -- ui-bootstrap.min.js
-    -- xeditable.min.js
--- partials/
-    -- admin.html
-    -- delivery.html
-    -- email.html
-    -- home.html
-    -- output.html
-    -- pickup.html
-    -- schedule.html
-    -- storeAndProducts.html
-data/
--- store.json
-img/
-index.html
+    a/
+    -- css/
+     -- app.css
+     -- bootstrap.min.css
+     -- bootstrap-select.css
+     -- bootstrap-switch.min.css
+     -- bootstrap-theme.min.css
+     -- xeditable.css
+     -- angular-toggle-switch.css
+    -- fonts/
+    -- js/
+     -- app.js
+     -- controllers.js
+     -- filters.js
+     -- services.js
+     -- angular.min.js
+     -- resource.js
+     -- angular-bootstrap-switch.min.js
+     -- angular-route.min.js
+     -- angular-uploadcare.js
+     -- bootstrap.min.js
+     -- bootstrap-select.js
+     -- bootstrap-switch.min.js
+     -- bootstrap-transition.js
+     -- transition.js
+     -- tooltip.js
+     -- tab.js
+     -- ui-bootstrap.min.js
+     -- xeditable.min.js
+    -- partials/
+     -- admin.html
+     -- delivery.html
+     -- email.html
+     -- home.html
+     -- output.html
+     -- pickup.html
+     -- schedule.html
+     -- storeAndProducts.html
+    data/
+    -- store.json
+    img/
+    index.html
 
-FEATURES:
+
+## FEATURES: ##
+
 1- Store and Bakery page with image uploading ability.
    -Simple CRUD for products.
 
@@ -64,16 +67,22 @@ FEATURES:
 5- Delivery page with on click editing
 
 
-TECHNOLOGIES:
+## TECHNOLOGIES: ##
+
 - HTML 5
+
 - Bootstrap 3+
+
 - AngularJs
+
 - UI-Modules
+
 - xeditable
+
 - UploadCare
 
 
-CODE SNIPPETS:
+## CODE SNIPPETS: ##
 
 1- Routing:-
 
@@ -119,4 +128,3 @@ CODE SNIPPETS:
             function ($scope) {
             $scope.store = null;
         }]);
-        
