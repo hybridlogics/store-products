@@ -1,0 +1,271 @@
+<!--Jamborton-->
+<div class="jumbotron" ng-style="{'background-image':'url(' + store.info.backgroundImage + ')'}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <label for="Logo">Logo:</label>
+                <input uploadcare-widget data-autostore data-images-only ng-model="store.info.logo" data-public-key="19c651058632f336c3aa" on-upload-complete="save()" data-image-shrink="50x50" class="btn btn-default" name="Logo">
+
+                <div class="pull-right">
+
+                    <label for="Background">Background:</label>
+                    <input uploadcare-widget data-autostore data-images-only ng-model="store.info.backgroundImage" data-public-key="19c651058632f336c3aa" on-upload-complete="save()" name="Background">
+                </div>
+
+                <div class="clearfix"></div>
+
+                <hr>
+
+                <center>
+
+                    <!--Title-->
+                    <div>
+                        <h1 ng-show="titleShow">{{store.title}} <button ng-show="titleShow" ng-click="toggle('titleShow')" class="btn btn-default"><span style="height:10px;width:10px" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></h1>
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <input ng-hide="titleShow" ng-model="title" placeholder="Enter Title Of Your Choice" class="form-control">
+                            </div>
+                            <button ng-hide="titleShow" ng-click="toggle('titleShow');saveTitle();save();" class="btn btn-default">Save Title</button>
+                        </form>
+                    </div>
+
+                    <br>
+
+                    <!--Tagline-->
+                    <h1 ng-show="taglineShow"><small>{{store.tagline}}</small> <button ng-show="taglineShow" ng-click="toggleTagline('taglineShow')" class="btn btn-default"><span style="height:10px;width:10px" class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></h1>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input ng-hide="taglineShow" ng-model="tagline" placeholder="Enter Tagline Of Your Choice" class="form-control">
+                        </div>
+                        <button ng-hide="taglineShow" ng-click="toggleTagline('taglineShow');saveTagline();save();" class="btn btn-default">Save Tagline</button>
+                    </form>
+
+                    <button class="btn btn-lg btn-default">About your store</button>
+
+                </center>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Settings-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <button ng-click="toggleCategoryOptions()" class="btn btn-default pull-right"><i class="fa fa-gear"></i> Settings</button>
+            </div>
+            <br>
+            <div ng-show="categoryShow">
+                <h4>Add Category</h4>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input ng-model="newCat" class="form-control" placeholder="Enter New Category"></input>
+                        <button ng-click="store.categories.push(newCat);save()" class="btn btn-default pull-right">Add Category</button>
+                    </div>
+                </form>
+                <h4>Delete Category</h4>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <div ng-repeat="(key, cat) in store.categories">
+                            <p> {{cat}}
+                                <button ng-click="store.categories.splice(key,1)" class="btn btn-default">&times;</button>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Products-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <br>
+            <div class="tab-pane">
+                <div class="row">
+
+                    <!--Products Showcases-->
+                    <div class="col-sm-6 col-md-3">
+                        <div ng-repeat="(key, product) in store.products | slice:sl3c:el3c">
+                            <div class="thumbnail" ng-style="thumbStyle">
+                                <div style="display:inline">
+                                    <input bs-switch ng-model="product.state" type="checkbox" switch-size="small" switch-on-text="YES" switch-off-text="NO" switch-on-color="success" switch-off-color="danger" ng-true-value="true" ng-false-value="false">
+                                    <span ng-show="product.state" class="label label-success pull-right">Active</span>
+                                    <span ng-hide="product.state" class="label label-danger pull-right">Inactive</span>
+                                </div>
+
+                                <img style="height: 200px;" ng-show="product.img != null" ng-src="{{product.img}}" alt="{{product.name}} Picture">
+                                <img style="height: 200px;" ng-show="product.img == null" ng-src="/Store/img/unavailable_product.jpg">
+                                <div class="caption">
+                                    <center>
+                                        <h3 ng-hide="showcaseItemShow[key]" style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden">{{product.name}}</h3>
+                                    </center>
+                                    <center>
+                                        <h3 style="white-space:nowrap;">
+										<span ng-hide="showcaseItemShow[key]" class="label label-info" style="width:50%">{{product.price | currency}} {{product.unit}}</span>
+                                        <input ng-show="showcaseItemShow[key]" ng-model="product.name" placeholder="Enter Name" class="form-control">
+                                        <button ng-hide="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key)"><span>Edit</span></button>
+                                        
+                                        <input ng-show="showcaseItemShow[key]" ng-model="product.price" placeholder="Enter Price" class="form-control">
+                                        <input ng-show="showcaseItemShow[key]" ng-model="product.unit" placeholder="Enter Unit" class="form-control">
+                                        <div ng-show="showcaseItemShow[key]" class="dropdown pull-left" style="display:inline;">
+                                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Category<span class="caret"></span></button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownCategory" >
+                                                <li ng-repeat="cat in store.categories"><a ng-click="product.category=cat">{{cat}}</a></li>
+                                            </ul>
+                                        </div>
+                                        <div ng-show="showcaseItemShow[key]">
+                                            <input ng-model="product.GST" type="checkbox">
+                                            <label>GST?</label>
+                                        </div>
+                                        <br>
+                                        <button ng-show="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key); save();"><span>Save</span></button>                                        
+									</h3>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div ng-repeat="(key, product) in store.products | slice:sl2c:el2c">
+                            <div class="thumbnail" ng-style="thumbStyle">
+
+                                <input bs-switch ng-model="product.state" type="checkbox" switch-size="small" switch-on-text="YES" switch-off-text="NO" switch-on-color="success" switch-off-color="danger" ng-true-value="true" ng-false-value="false">
+                                <span ng-show="product.state" class="label label-success pull-right">Active</span>
+                                <span ng-hide="product.state" class="label label-danger pull-right">Inactive</span>
+                                <img style="height: 200px;" ng-show="product.img != null" ng-src="{{product.img}}" alt="{{product.name}} Picture">
+                                <img style="height: 200px;" ng-show="product.img == null" ng-src="/Store/img/unavailable_product.jpg">
+                                <div class="caption">
+                                    <center>
+                                        <h3 ng-hide="showcaseItemShow[key]" style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden">{{product.name}}</h3>
+                                    </center>
+                                    <center>
+                                        <h3 style="white-space:nowrap;">
+										<span ng-hide="showcaseItemShow[key]" class="label label-info" style="width:50%">{{product.price | currency}} {{product.unit}}</span>
+                                <input ng-show="showcaseItemShow[key]" ng-model="product.name" placeholder="Enter Name" class="form-control">
+                                <button ng-hide="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key)"><span>Edit</span></button>
+                                <input ng-show="showcaseItemShow[key]" ng-model="product.price" placeholder="Enter Price" class="form-control">
+                                <input ng-show="showcaseItemShow[key]" ng-model="product.unit" placeholder="Enter Unit" class="form-control">
+                                <div ng-show="showcaseItemShow[key]" class="dropdown pull-left" style="display:inline;">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Category<span class="caret"></span></button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownCategory" >
+                                        <li ng-repeat="cat in store.categories"><a ng-click="product.category=cat">{{cat}}</a></li>
+                                    </ul>
+                                </div>
+                                <div ng-show="showcaseItemShow[key]">
+                                    <input ng-model="product.GST" type="checkbox">
+                                    <label>GST?</label>
+                                </div>
+                                <br>
+                                <button ng-show="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key); save();"><span>Save</span></button>
+                                </h3>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div ng-repeat="(key, product) in store.products | slice:sl1c:el1c">
+                            <div class="thumbnail" ng-style="thumbStyle">
+
+                                <input bs-switch ng-model="product.state" type="checkbox" switch-size="small" switch-on-text="YES" switch-off-text="NO" switch-on-color="success" switch-off-color="danger" ng-true-value="true" ng-false-value="false">
+                                <span ng-show="product.state" class="label label-success pull-right">Active</span>
+                                <span ng-hide="product.state" class="label label-danger pull-right">Inactive</span>
+                                <img style="height: 200px;" ng-show="product.img != null" ng-src="{{product.img}}" alt="{{product.name}} Picture">
+                                <img style="height: 200px;" ng-show="product.img == null" ng-src="/Store/img/unavailable_product.jpg">
+                                <div class="caption">
+                                    <center>
+                                        <h3 ng-hide="showcaseItemShow[key]" style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden">{{product.name}}</h3>
+                                    </center>
+                                    <center>
+                                        <h3 style="white-space:nowrap;">
+										<span ng-hide="showcaseItemShow[key]" class="label label-info" style="width:50%">{{product.price | currency}} {{product.unit}}</span>
+                                        <input ng-show="showcaseItemShow[key]" ng-model="product.name" placeholder="Enter Name" class="form-control">
+                                        <button ng-hide="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key)"><span>Edit</span></button>
+                                        <input ng-show="showcaseItemShow[key]" ng-model="product.price" placeholder="Enter Price" class="form-control">
+                                        <input ng-show="showcaseItemShow[key]" ng-model="product.unit" placeholder="Enter Unit" class="form-control">
+                                        <div ng-show="showcaseItemShow[key]" class="dropdown pull-left" style="display:inline;">
+                                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Category<span class="caret"></span></button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownCategory" >
+                                                <li ng-repeat="cat in store.categories"><a ng-click="product.category=cat">{{cat}}</a></li>
+                                            </ul>
+                                        </div>
+                                        <div ng-show="showcaseItemShow[key]">
+                                            <input ng-model="product.GST" type="checkbox">
+                                            <label>GST?</label>
+                                        </div>
+                                        <br>
+                                        <button ng-show="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key); save();"><span>Save</span></button>                                        
+									</h3>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--New Product-->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail" style="height:400px;">
+                            <div style="height:220px;background-color:#eee;padding:10px;">
+                                <div>
+                                    <div style="display:inline;font-size:20px;font-weight:bold">
+                                        <span>Add Product</span>
+                                    </div>
+                                    <div style="float:right;display:inline">
+                                        <button ng-click="store.products.push({category:newProduct.category,description:newProduct.description,name:newProduct.name,price:newProduct.price,GST:newProduct.gst,unit:newProduct.unit,state:true,img:newProduct.img});save();refreshList()" class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <br>
+                                <div>
+                                    <textarea class="form-control" ng-model="newProduct.description" placeholder="Description of your product"></textarea>
+                                    <br>
+                                    <div style="display:inline">
+                                        <input uploadcare-widget data-autostore data-images-only ng-model="newProduct.img" data-public-key="19c651058632f336c3aa">
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownCategory" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            Category
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownCategory">
+                                            <li ng-repeat="cat in store.categories"><a ng-click="newProduct.category=cat">{{cat}}</a></li>
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                            <div class="caption" ng-init="newProduct.name='Product Name';newProduct.price='00.00';newProduct.unit='unit'">
+                                
+                                <input ng-hide="configShow" ng-model="newProduct.name" placeholder="Product Name" class="form-control">
+                                <input ng-hide="configShow" ng-model="newProduct.price" placeholder="Enter Price In $" class="form-control">
+                                <input ng-hide="configShow" ng-model="newProduct.unit" placeholder="Unit Type (e.g. 'each')" class="form-control">
+                                <div ng-hide="configShow">
+                                    <input ng-model="newProduct.gst" type="checkbox">
+                                    <label>GST?</label>
+                                </div>
+                                <center ng-show="configShow">
+                                    <h3>{{newProduct.name}}</h3>
+                                </center>
+                                <center ng-show="configShow">
+                                    <h3>
+										<span class="label label-info">{{newProduct.price | currency}} {{newProduct.unit}}</span>
+									</h3>
+                                </center>
+                                <button ng-click="toggleConfig()" class="btn btn-default pull-right"><span><i class="fa fa-gear"></i> Config</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

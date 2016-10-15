@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <h2 style="color:#38A2FF">Email Configuration</h2>
+            <p>To edit an email copy it into <a href="http://codebeautify.org/htmlviewer/" target="_blank">this editor</a>. Use beautify to expand and minify to compress it. Once compressed, copy it below.</p>
+
+            <ul class="nav nav-tabs">
+                <li class="navicon active"><a href="#tabCE" data-toggle="tab">Customer Email</a></li>
+                <li class="navicon"><a href="#tabAE" data-toggle="tab">Admin Email</a></li>
+            </ul>
+            <div class="tab-content">
+                <section class="tab-pane fade in active" id="tabCE">
+                    <h3>Customer Email</h3>
+                    <label>Email Content</label>
+                    <textarea rows="20" class="form-control" ng-model="store.options.custEmail"></textarea>
+                </section>
+                <section class="tab-pane fade" id="tabAE">
+                    <h3>Admin Email</h3>
+                    <label>Admin Email (where the order emails get sent)</label>
+                    <input type="text" class="form-control" placeholder="bob@example.com" ng-model="store.options.returnEmail">
+                    <label>Email Content</label>
+                    <textarea rows="20" class="form-control" ng-model="store.options.adminEmail"></textarea>
+                </section>
+            </div>
+
+            <script>
+                $('.navicon a').click(function (e) {
+                    e.preventDefault()
+                    $(this).tab('show')
+                })
+            </script>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,176 @@
+<style>
+    .editable-bstime .editable-input i.icon-chevron-up:before {
+        content: '\e113';
+    }
+    
+    .editable-bstime .editable-input i.icon-chevron-down:before {
+        content: '\e114';
+    }
+    
+    .editable-bstime .editable-input i.icon-chevron-up,
+    .editable-bstime .editable-input i.icon-chevron-down {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Glyphicons Halflings';
+        -webkit-font-smoothing: antialiased;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+    }
+</style>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <h2 style="color:#38A2FF">Pickup Configuration</h2>
+
+            <!--Last Orders-->
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <tr style="font-weight:bold; background-color:#38A2FF">
+
+                        <td>Day</td>
+
+                        <td data-container="body" data-toggle="tooltip" data-placement="top" title="Set the time for last pickup requests from customersy">Last Orders</td>
+
+                    </tr>
+
+                    <tr ng-repeat="(key, schedule) in store.options.ownZone.schedules">
+
+                        <!--Day-->
+                        <td style="font-weight:bold;">{{schedule.day}}</td>
+
+                        <!--Last Orders-->
+                        <td>
+                            <a ng-show="schedule.active" href="#" editable-bstime="schedule.lastOrders" e-show-meridian="false" e-minute-step="10">{{schedule.lastOrders | date:'hh:mm a'}}</a>
+                            <p ng-hide="schedule.active">{{schedule.lastOrders | date:'hh:mm a'}}</p>
+                        </td>
+
+                    </tr>
+
+                </table>
+
+                <button class="btn btn-default" ng-click="save();">Save</button>
+
+            </div>
+
+            <br>
+
+            <!-- Pick Up Locations  -->
+            <h3>Pick Up Locations</h3>
+            <section class="container">
+
+                <label>Description</label>
+                <textarea ng-model="store.options.deliveryPage.description" class="form-control"></textarea>
+                <br>
+
+                <!--Locations-->
+                <div class="col-sm-6 col-md-3">
+                    <div ng-repeat="(key, location) in store.options.ownZone.locations | slice:sl3c:el3c">
+                        <div class="thumbnail" ng-style="thumbStyle">
+                            <img style="height: 200px;" ng-show="location.img != null" ng-src="{{location.img}}" alt="{{location.name}} Picture">
+                            <img style="height: 200px;" ng-show="location.img == null" ng-src="/Store/img/unavailable_product.jpg">
+                            <div class="caption">
+                                <center>
+                                    <h3 ng-hide="showcaseItemShow[key]" style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden">{{location.name}}</h3>
+                                </center>
+                                <center>
+                                    <h3 style="white-space:nowrap;">
+                                        <input ng-show="showcaseItemShow[key]" ng-model="location.name" placeholder="Enter Location" class="form-control">
+                                        <button ng-hide="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key)"><span>Edit</span></button>
+                                        <br>
+                                        <button ng-show="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key); save();"><span>Save</span></button>                                        
+									</h3>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div ng-repeat="(key, location) in store.options.ownZone.locations | slice:sl2c:el2c">
+                        <div class="thumbnail" ng-style="thumbStyle">
+                            <img style="height: 200px;" ng-show="location.img != null" ng-src="{{location.img}}" alt="{{location.name}} Picture">
+                            <img style="height: 200px;" ng-show="location.img == null" ng-src="/Store/img/unavailable_product.jpg">
+                            <div class="caption">
+                                <center>
+                                    <h3 ng-hide="showcaseItemShow[key]" style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden">{{location.name}}</h3>
+                                </center>
+                                <center>
+                                    <h3 style="white-space:nowrap;">
+                                        <input ng-show="showcaseItemShow[key]" ng-model="location.name" placeholder="Enter Location" class="form-control">
+                                        <button ng-hide="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key)"><span>Edit</span></button>
+                                        <br>
+                                        <button ng-show="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key); save();"><span>Save</span></button>                                        
+									</h3>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3">
+                    <div ng-repeat="(key, location) in store.options.ownZone.locations | slice:sl1c:el1c">
+                        <div class="thumbnail" ng-style="thumbStyle">
+                            <img style="height: 200px;" ng-show="location.img != null" ng-src="{{location.img}}" alt="{{location.name}} Picture">
+                            <img style="height: 200px;" ng-show="location.img == null" ng-src="/Store/img/unavailable_product.jpg">
+                            <div class="caption">
+                                <center>
+                                    <h3 ng-hide="showcaseItemShow[key]" style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden">{{location.name}}</h3>
+                                </center>
+                                <center>
+                                    <h3 style="white-space:nowrap;">
+                                        <input ng-show="showcaseItemShow[key]" ng-model="location.name" placeholder="Enter Location" class="form-control">
+                                        <button ng-hide="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key)"><span>Edit</span></button>
+                                        <br>
+                                        <button ng-show="showcaseItemShow[key]" class="btn btn-primary btn-sm" ng-click="toggleShowcaseItem(key); save();"><span>Save</span></button>                                        
+									</h3>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Add New Location-->
+                <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail" style="height:310px;">
+                        <div style="height:300px;background-color:#eee;padding:10px;">
+                            <div>
+                                <div style="display:inline;font-size:20px;font-weight:bold">
+                                    <span>Add New Location</span>
+                                </div>
+                                <div style="float:right;display:inline">
+                                    <button ng-click="store.options.ownZone.locations.push({name:newLocation.name,description:newLocation.description,img:newLocation.img,long:newLocation.long,lat:newLocation.lat,zoom:newLocation.zoom,img:newLocation.img}); save(); refreshLocations();" class="btn btn-primary btn-sm">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <br>
+                            <div>
+                                <div class="caption" ng-init="newLocation.name='Location Name';newLocation.long='';newLocation.lat='';">
+                                    <input type="text" ng-model="newLocation.name" placeholder="Location name" class="form-control">
+                                    <input type="text" ng-model="newLocation.long" placeholder="Longitude of map" class="form-control">
+                                    <input type="text" ng-model="newLocation.lat" placeholder="Latitude of map" class="form-control">
+                                </div>
+                                <textarea ng-model="newLocation.description" class="form-control" placeholder="Add Description"></textarea>
+                                <div style="display:inline">
+                                    <input uploadcare-widget data-autostore data-images-only ng-model="newLocation.img" data-public-key="19c651058632f336c3aa">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </div>
+</div>

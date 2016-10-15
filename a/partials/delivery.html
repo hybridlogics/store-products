@@ -1,0 +1,84 @@
+<style>
+    .editable-bstime .editable-input i.icon-chevron-up:before {
+        content: '\e113';
+    }
+    
+    .editable-bstime .editable-input i.icon-chevron-down:before {
+        content: '\e114';
+    }
+    
+    .editable-bstime .editable-input i.icon-chevron-up,
+    .editable-bstime .editable-input i.icon-chevron-down {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Glyphicons Halflings';
+        -webkit-font-smoothing: antialiased;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+    }
+</style>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            
+            <h2 style="color:#38A2FF">Delivery Configuration</h2>
+            
+            <!--EcoCaddy and In-House-->
+            <div class="table-responsive">
+                
+                <table class="table table-bordered table-striped">
+                    
+                    <tr style="font-weight:bold; background-color:#38A2FF">
+                        
+                        <td>Day</td>
+                                                
+                        <td data-container="body" data-toggle="tooltip" data-placement="top" title="Select whether you'd like EcoCaddy CBD delivery">EcoCaddy</td>
+                        
+                        <td data-container="body" data-toggle="tooltip" data-placement="top" title="Select whether if you'd like to manage delivery in-house">In-House</td>
+                        
+                    </tr>
+                    
+                    <tr ng-repeat="(key, schedule) in store.options.ownZone.schedules">
+                        
+                        <!--Day-->
+                        <td style="font-weight:bold;">{{schedule.day}}</td>
+                        
+                        <!--EcoCaddy-->
+                        <td>
+                            <a ng-show="schedule.active"  href="#" editable-select="schedule.ecoCaddy" e-ng-options="s.value as s.text for s in store.options.ownZone.activeStatus">
+                                <div ng-show="schedule.ecoCaddy && schedule.active">Yes</div>
+                                <div ng-hide="schedule.ecoCaddy && schedule.active">No</div>
+                            </a>
+                            <div ng-show="schedule.ecoCaddy && !schedule.active">Yes</div>
+                            <div ng-show="!schedule.ecoCaddy && !schedule.active">No</div>
+                        </td>
+                        
+                        <!--In-House-->
+                        <td>
+                            <a ng-show="schedule.active" href="#" editable-select="schedule.inHouse" e-ng-options="s.value as s.text for s in store.options.ownZone.activeStatus">
+                                <div ng-show="schedule.inHouse && schedule.active">Yes</div>
+                                <div ng-hide="schedule.inHouse && schedule.active">No</div>
+                            </a>
+                            <div ng-show="schedule.inHouse && !schedule.active">Yes</div>
+                            <div ng-show="!schedule.inHouse && !schedule.active">No</div>
+                        </td>
+                        
+                    </tr>
+                    
+                </table>
+                
+                <button class="btn btn-default" ng-click="save();">Save</button>
+                
+            </div>
+
+        </div>
+    </div>
+</div>

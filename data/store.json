@@ -1,0 +1,156 @@
+{
+    "store": {
+        "title": "Corner Bakery",
+        "tagline": "Best Meals You Can Get",
+        "categories": ["Hot", "Cold"],
+        "info": {
+            "about": "Some text here",
+            "backgroundImage": "https://ucarecdn.com/a9a1907e-b7af-4311-8d11-08f2d952aeb5/",
+            "logo": "https://ucarecdn.com/a9a1907e-b7af-4311-8d11-08f2d952aeb5/",
+            "name": "Market Meals",
+            "tagline": "By Lucie Vano"
+        },
+        "options": {
+            "aboutButton": true,
+            "adminEmail": "<p>Hi there, ###firstName### ###lastName### has made an order!</p><p>The order has been placed for: ###day### between ###time### at ###location###</p><hr/><p><strong>Order</strong></p><p>###order###</p><p>Cost: $###cost###</p><p>Ordered on: ###timestamp###</p><hr/><p>Comment</p><p>###orderComment###</p>",
+            "cat": true,
+            "cols": 3,
+            "custEmail": "<p>Hi ###firstName###,</p><p>Thanks for choosing Market Meals!</p><p>Your fresh meal will be waiting for you ###day### between ###time### at###location###</p><p>Here's what you ordered:</p><p>###order###</p><p>Cost: $###cost###</p><i>includes GST of $###australiaGST###</i><p>Ordered on: ###timestamp###</p><p>You also left us an order comment saying ...</p><p>###orderComment###</p><p>Please bring this email with you (on your phone is fine) to confirm yourorder at the collection point listed above.</p><p><br>See you there!<br><br>The MM team</p>",
+            "delOnMain": true,
+            "deliveryPage": {
+                "deliveryLinkText": "Pick up",
+                "description": "You can pick up your box from two convenient locations. You market lunch box will be available for pickup between 12-2pm.",
+                "title": "Pick up your box"
+            },
+            "deliveryZone": "your_market_meals",
+            "deliveryZoneName": "Your Market Meals",
+            "deliveryZoneType": "own",
+            "ownZone": {
+                "locations": [
+                    {
+                        "description": "Pop into Level 1 on Gouger St to pick up your lunch",
+                        "img": "http://www.independent.co.uk/incoming/article8465213.ece/alternates/w620/v2-cute-cat-picture.jpg",
+                        "lat": -34.929424,
+                        "long": 138.597012,
+                        "text": "The Market Kitchen is located on Level 1 of the Central Market on Gouger St. Head up the stairs or the elevator on the way to the car park and you will see the doors open.",
+                        "zoom": 16,
+                        "name": "The Market Kitchen"
+                    },
+                    {
+                        "description": "Visit Coffee Central just outside the Richmond Hotel.",
+                        "img": "https://pbs.twimg.com/media/CCFTdeSW0AEAnwg.jpg",
+                        "lat": 1,
+                        "long": 1,
+                        "text": "Coffee Central is located outside the front of the Richmond Hotel.",
+                        "zoom": 1,
+                        "name": "Rundle Mall"
+                    }
+                ],
+                "activeStatus": [
+                    {
+                        "value": true,
+                        "text": "Yes"
+                        },
+                    {
+                        "value": false,
+                        "text": "No"
+                        }
+                    ],
+                "schedules": [{
+                    "day": "Monday",
+                    "active": true,
+                    "open": "1984-05-15T14:20:00.000Z",
+                    "close": "1984-05-15T14:20:00.000Z",
+                    "lastOrders": "1984-05-15T14:20:00.000Z",
+                    "ecoCaddy": true,
+                    "inHouse": false
+						}, {
+                    "day": "Tuesday",
+                    "active": true,
+                    "open": "1984-05-15T14:20:00.000Z",
+                    "close": "1984-05-15T14:20:00.000Z",
+                    "lastOrders": "1984-05-15T14:20:00.000Z",
+                    "ecoCaddy": false,
+                    "inHouse": true
+						}, {
+                    "day": "Wednesday",
+                    "active": false,
+                    "open": "1984-05-15T14:20:00.000Z",
+                    "close": "1984-05-15T14:20:00.000Z",
+                    "lastOrders": "1984-05-15T14:20:00.000Z",
+                    "ecoCaddy": true,
+                    "inHouse": false
+						}, {
+                    "day": "Thursday",
+                    "active": true,
+                    "open": "1984-05-15T14:20:00.000Z",
+                    "close": "1984-05-15T14:20:00.000Z",
+                    "lastOrders": "1984-05-15T14:20:00.000Z",
+                    "ecoCaddy": true,
+                    "inHouse": true
+						}, {
+                    "day": "Friday",
+                    "active": true,
+                    "open": "1984-05-15T14:20:00.000Z",
+                    "close": "1984-05-15T14:20:00.000Z",
+                    "lastOrders": "1984-05-15T14:20:00.000Z",
+                    "ecoCaddy": true,
+                    "inHouse": true
+						}, {
+                    "day": "Saturday",
+                    "active": true,
+                    "open": "1984-05-15T14:20:00.000Z",
+                    "close": "1984-05-15T14:20:00.000Z",
+                    "lastOrders": "1984-05-15T14:20:00.000Z",
+                    "ecoCaddy": false,
+                    "inHouse": false
+						}, {
+                    "day": "Sunday",
+                    "active": false,
+                    "open": "1984-05-15T14:20:00.000Z",
+                    "close": "1984-05-15T14:20:00.000Z",
+                    "lastOrders": "1984-05-15T14:20:00.000Z",
+                    "ecoCaddy": true,
+                    "inHouse": true
+						}]
+            },
+            "public": true,
+            "returnEmail": "ben.clark@flinders.edu.au"
+        },
+        "products": [
+            {
+                "category": "Cold",
+                "description": "Yummy Dummy",
+                "id": "0",
+                "img": "/Store/img/salad.png",
+                "name": "Salad",
+                "price": 10,
+                "GST": true,
+                "unit": "each",
+                "state": true
+            },
+            {
+                "category": "Cold",
+                "description": "Colder than a Fish",
+                "id": "1",
+                "img": "/Store/img/fruit_chaat.jpg",
+                "name": "Fruit Chaat",
+                "price": 20,
+                "GST": false,
+                "unit": "each",
+                "state": true
+            },
+            {
+                "category": "Hot",
+                "description": "Try the tri's!",
+                "id": "2",
+                "img": "/Store/img/samosa.jpg",
+                "name": "Samosa",
+                "price": 15,
+                "GST": true,
+                "unit": "each",
+                "state": true
+            }
+        ]
+    }
+}
